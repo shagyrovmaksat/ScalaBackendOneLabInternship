@@ -4,7 +4,7 @@
 		module="test1_2.12"
 		revision="0.1"
 		status="integration"
-		publication="20210616223704"
+		publication="20210621180326"
 	>
 		<description>
 		test1
@@ -34,5 +34,14 @@
 		<dependency org="org.scala-lang" name="scala-library" rev="2.12.10" conf="scala-tool->default,optional(default);compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-actor_2.12" rev="2.5.23" conf="compile->default(compile)"/>
 		<dependency org="com.typesafe.akka" name="akka-slf4j_2.12" rev="2.5.23" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-http_2.12" rev="10.1.9" conf="compile->default(compile)"/>
+		<dependency org="de.heikoseeberger" name="akka-http-json4s_2.12" rev="1.20.1" conf="compile->default(compile)"/>
+		<dependency org="com.typesafe.akka" name="akka-stream_2.12" rev="2.5.23" conf="compile->default(compile)"/>
+		<dependency org="org.json4s" name="json4s-core_2.12" rev="3.5.4" conf="compile->default(compile)"/>
+		<dependency org="org.json4s" name="json4s-jackson_2.12" rev="3.5.4" conf="compile->default(compile)"/>
+		<dependency org="org.json4s" name="json4s-native_2.12" rev="3.5.4" conf="compile->default(compile)"/>
+		<dependency org="com.sksamuel.elastic4s" name="elastic4s-core_2.12" rev="7.0.1" conf="compile->default(compile)"/>
+		<dependency org="com.sksamuel.elastic4s" name="elastic4s-json-json4s_2.12" rev="7.0.1" conf="compile->default(compile)"/>
+		<dependency org="com.sksamuel.elastic4s" name="elastic4s-client-akka_2.12" rev="7.0.1" conf="compile->default(compile)"/>
 	</dependencies>
 </ivy-module>

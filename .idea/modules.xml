@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/scalabackendonelabinternship.iml" filepath="$PROJECT_DIR$/.idea/modules/scalabackendonelabinternship.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scalabackendonelabinternship-build.iml" filepath="$PROJECT_DIR$/.idea/modules/scalabackendonelabinternship-build.iml" />
     </modules>
   </component>
 </project>
