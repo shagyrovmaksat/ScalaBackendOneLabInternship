@@ -7,7 +7,7 @@
 		revision="0.1"
 		conf="runtime-internal"
 		confs="compile, runtime, test, provided, optional, compile-internal, runtime-internal, test-internal, plugin, pom, scala-tool"
-		date="20210621180328"/>
+		date="20210623213706"/>
 	<dependencies>
 		<module organisation="com.sksamuel.elastic4s" name="elastic4s-client-akka_2.12">
 			<revision name="7.0.1" status="release" pubdate="20190510093618" resolver="sbt-chain" artresolver="sbt-chain" homepage="https://github.com/sksamuel/elastic4s" downloaded="false" searched="false" default="false" conf="default, compile, runtime, default(compile), master" position="28">

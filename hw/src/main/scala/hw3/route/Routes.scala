@@ -7,10 +7,8 @@ import akka.http.scaladsl.server.directives.BasicDirectives
 import akka.util.Timeout
 import de.heikoseeberger.akkahttpjson4s.Json4sSupport
 import hw3.actors.Handler
-import hw3.domain.Book
 import hw3.domain.dto.BookDto
 import hw3.serializer.Serializer
-
 import scala.concurrent.Promise
 
 trait Routes extends PerRequestCreator with Serializer with BasicDirectives with Json4sSupport {
