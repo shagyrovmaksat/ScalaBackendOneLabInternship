@@ -10,7 +10,7 @@ import scala.concurrent.ExecutionContext
 class HistoryRepository(val client: ElasticClient)
                     (implicit val ec: ExecutionContext, config: Config) extends ElasticRepository[HistoryItem] with Serializer {
 
-  def indexName: String = config.getString("elastic.indexes.histories")
+  def indexName: String = config.getString("elastic.indexes.history")
 
   override implicit val manifest: Manifest[HistoryItem] = Manifest.classType[HistoryItem](classOf[HistoryItem])
 }

@@ -1,6 +1,6 @@
 package project.serializer
 
-import project.domain.{HistoryItem, Photo, UrlsItem}
+import project.domain.{HistoryItem, Photo, SearchResult, UrlsItem}
 import org.json4s.jackson.Serialization
 import org.json4s.{Formats, ShortTypeHints}
 
@@ -11,7 +11,8 @@ trait Serializer extends SerializerWithoutTypeHints {
       List(
         classOf[HistoryItem],
         classOf[Photo],
-        classOf[UrlsItem]
+        classOf[UrlsItem],
+        classOf[SearchResult]
       )
     )
   )

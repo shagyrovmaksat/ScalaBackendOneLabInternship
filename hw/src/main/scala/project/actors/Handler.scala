@@ -95,7 +95,7 @@ class Handler(elasticClient: ElasticClient)(
                 exception = history.exception)
               ).onComplete {
                 case Success(history) => context.parent ! history
-                case Failure(exception) => context.parent ! exception
+                case Failure(exception) => throw exception
               }
             case Failure(exception: Throwable) =>
               historyService.updateHistory(HistoryItem(

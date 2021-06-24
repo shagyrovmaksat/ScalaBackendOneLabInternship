@@ -9,7 +9,7 @@ import com.sksamuel.elastic4s.ElasticClient
 import com.typesafe.config.Config
 import org.json4s.jackson.JsonMethods
 import project.Boot.formats
-import project.domain.{HistoryItem, Photo}
+import project.domain.{HistoryItem, Photo, SearchResult}
 import project.repository.HistoryRepository
 
 import java.net.URI
@@ -48,13 +48,13 @@ class HistoryService(client: ElasticClient)(
     Http().singleRequest(
       HttpRequest(
         method = HttpMethods.GET,
-        uri = URI.create(s"https://api.unsplash.com/photos?query=$filter&client_id=$clientId").normalize.toString
+        uri = URI.create(s"https://api.unsplash.com/search/photos?query=$filter&client_id=$clientId").normalize.toString
       )
     ).onComplete {
       case Success(value) =>
-        value.entity.dataBytes.runFold(ByteString.empty)(_ ++ _).map(_.decodeString(StandardCharsets.UTF_8)).map(JsonMethods.parse(_).extract[Seq[Photo]]).onComplete {
+        value.entity.dataBytes.runFold(ByteString.empty)(_ ++ _).map(_.decodeString(StandardCharsets.UTF_8)).map(JsonMethods.parse(_).extract[SearchResult]).onComplete {
           case Success(value) =>
-            p.success(value)
+            p.success(value.results)
           case Failure(exception) =>
             p.failure(exception)
         }
@@ -71,13 +71,13 @@ class HistoryService(client: ElasticClient)(
     Http().singleRequest(
       HttpRequest(
         method = HttpMethods.GET,
-        uri = URI.create(s"https://api.unsplash.com/photos/$id&client_id=$clientId").normalize.toString
+        uri = URI.create(s"https://api.unsplash.com/photos/$id?client_id=$clientId").normalize.toString
       )
     ).onComplete {
       case Success(value) =>
-        value.entity.dataBytes.runFold(ByteString.empty)(_ ++ _).map(_.decodeString(StandardCharsets.UTF_8)).map(JsonMethods.parse(_).extract[Seq[Photo]]).onComplete {
+        value.entity.dataBytes.runFold(ByteString.empty)(_ ++ _).map(_.decodeString(StandardCharsets.UTF_8)).map(JsonMethods.parse(_).extract[Photo]).onComplete {
           case Success(value) =>
-            p.success(value)
+            p.success(Seq(value))
           case Failure(exception) =>
             p.failure(exception)
         }

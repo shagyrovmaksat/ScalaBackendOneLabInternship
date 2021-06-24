@@ -22,29 +22,38 @@ trait Routes extends PerRequestCreator with Serializer with BasicDirectives with
   val routes: Route =
     pathPrefix("history") {
       concat(
-        path("api") {
+        path("all") {
+          get {
+            handle(handlerProps, Handler.GetAll())
+          }
+        },
+        path("search") {
           get {
             parameter('filter.as[String]) { filter =>
               handle(handlerProps, Handler.CreateHistory(HistoryItemDto(filter = filter, responce = null, exception = null)))
             }
           }
         },
-        path(Segment) { value =>
-          value match {
-            case "all" =>
-              get {
-                handle(handlerProps, Handler.GetAll())
-              }
-            case _ =>
-              get {
-                handle(handlerProps, Handler.GetHistoryByID(value))
-              }
+        path("photoId") {
+          get {
+            parameter('id.as[String]) { photoId =>
+              handle(handlerProps, Handler.GetPhotoByID(photoId))
+            }
           }
         },
-        path(Segment) { bookId =>
-          delete {
-            handle(handlerProps, Handler.DeleteHistoryByID(bookId))
-          }
+        path("historyId") {
+          concat(
+            get {
+              parameter('id.as[String]) { historyId =>
+                handle(handlerProps, Handler.GetHistoryByID(historyId))
+              }
+            },
+            delete {
+              parameter('id.as[String]) { historyId =>
+                handle(handlerProps, Handler.DeleteHistoryByID(historyId))
+              }
+            }
+          )
         }
       )
     }
